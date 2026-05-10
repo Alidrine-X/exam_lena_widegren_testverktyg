@@ -13,6 +13,7 @@ def step_all_buttons_visible(context):
     context.navbar = NavbarPage(context.page)
     context.navbar.check_all_buttons_visible()
 
+
 @given(u'användaren klickar på knappen "Lägg till bok"')
 @when(u'användaren klickar på knappen "Lägg till bok"')
 def step_user_click_on_add_book(context):

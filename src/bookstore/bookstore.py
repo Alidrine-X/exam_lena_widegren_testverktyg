@@ -36,8 +36,8 @@
 # Then ska boken ha inte ha status "favorit"
 #
 # ---------------------------------------------------------------
-
 from src.bookstore.book import Book
+
 
 class BookStore:
     """Klass för en läslista med böcker"""
@@ -73,4 +73,3 @@ class BookStore:
             book.favorite = not book.favorite
             return True
         return False
-

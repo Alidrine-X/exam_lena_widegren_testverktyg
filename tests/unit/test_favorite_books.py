@@ -8,9 +8,11 @@ from src.bookstore.favorite_books import FavoriteBooks
 def favorite_list():
     return FavoriteBooks()
 
+
 @pytest.fixture
 def book():
-    return Book(105, "Microslop Browserdóttir", "Playwright: Click It Till You Make It")
+    return Book(105, "Microslop Browserdóttir",
+                "Playwright: Click It Till You Make It")
 
 
 # Testa att markera bok som favorit
@@ -44,6 +46,7 @@ def test_remove_book(favorite_list, book):
     assert book not in favorite_list.favorites
     assert len(favorite_list.favorites) == 0
 
+
 # Testa att favoritmarkera en icke-bok
 def test_add_invalid_book(favorite_list):
     # Act
@@ -53,4 +56,3 @@ def test_add_invalid_book(favorite_list):
     # Assert
     assert book not in favorite_list.favorites
     assert len(favorite_list.favorites) == 0
-

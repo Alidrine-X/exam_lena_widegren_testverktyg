@@ -50,7 +50,8 @@ def test_remove_book(favorite_list, book):
 # Testa att favoritmarkera en icke-bok
 def test_add_invalid_book(favorite_list):
     # Act
-    book = ("inte en bok", "George R.R. Martin", "The Developer Who Knew Nothing")
+    book = ("inte en bok", "George R.R. Martin",
+            "The Developer Who Knew Nothing")
     favorite_list.add(book)
 
     # Assert

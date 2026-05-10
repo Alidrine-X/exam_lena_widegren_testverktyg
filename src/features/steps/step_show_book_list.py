@@ -2,7 +2,8 @@ from behave import then
 from playwright.sync_api import expect
 
 
-@then(u'ska boken "Ormar på ett plan: En Python-berättelse" finnas med i Läslistan')
+@then(u'ska boken "Ormar på ett plan: En Python-berättelse" '
+      u'finnas med i Läslistan')
 def step_confirm_book_on_page(context):
     title = "Ormar på ett plan: En Python-berättelse"
     book_row = context.page.locator(".book", has_text=title)

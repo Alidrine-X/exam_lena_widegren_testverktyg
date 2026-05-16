@@ -57,4 +57,3 @@ def test_add_invalid_book(favorite_list):
     # Assert
     assert book not in favorite_list.favorites
     assert len(favorite_list.favorites) == 0
-

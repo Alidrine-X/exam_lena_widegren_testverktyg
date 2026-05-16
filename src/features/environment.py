@@ -21,6 +21,7 @@ def before_scenario(context, scenario):
     context.base_url = "https://tap-ht25-testverktyg.github.io/exam/"
     context.navbar = NavbarPage(context.page)
 
+
 # Runs directly after each scenario - clean up to avoid memory leaks
 def after_scenario(context, scenario):
     if context.page:

@@ -7,8 +7,10 @@ def step_books_exist_in_catalog(context):
     for row in context.table:
         title = row["title"]
         author = row["author"]
-        book = context.page.locator(".book").filter(has_text=title).filter(has_text=author)
+        book = (context.page.locator(".book")
+                .filter(has_text=title).filter(has_text=author))
         expect(book).to_be_visible()
+
 
 @given(u'att användaren markerat följande böcker som favoriter:')
 def step_mark_favorite_book_loop(context):
@@ -17,9 +19,9 @@ def step_mark_favorite_book_loop(context):
         author = row["author"]
 
         # Anropa det befintliga steget via dess Gherkin-text
-        context.execute_steps(f'''
-                    When användaren klickar på raden framför boken "{title}" av "{author}"
-                ''')
+        step_text = (f'When användaren klickar på raden framför boken '
+                        f'"{title}" av "{author}"')
+        context.execute_steps(step_text)
 
 
 @then(u'ska följande böcker visas:')

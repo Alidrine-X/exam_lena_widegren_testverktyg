@@ -1,4 +1,4 @@
-from behave import given, when
+from behave import when
 
 
 @when(u'användaren skriver in titeln "{title}"')

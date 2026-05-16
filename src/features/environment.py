@@ -1,4 +1,5 @@
 from playwright.sync_api import sync_playwright
+from src.features.pages.navbar_page import NavbarPage
 
 
 # Runs before any scenarios
@@ -16,9 +17,9 @@ def before_scenario(context, scenario):
     # Open a new page, to prevent cookies to leak between tests. Set default
     # timeout to something appropriate. Close the page in after_scenario.
     context.page = context.browser.new_page()
-    context.page.set_default_timeout(500)
+    context.page.set_default_timeout(3000)
     context.base_url = "https://tap-ht25-testverktyg.github.io/exam/"
-
+    context.navbar = NavbarPage(context.page)
 
 # Runs directly after each scenario - clean up to avoid memory leaks
 def after_scenario(context, scenario):

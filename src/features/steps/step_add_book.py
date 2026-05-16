@@ -1,12 +1,4 @@
-from behave import given, when, then
-from playwright.sync_api import expect
-from src.features.pages.navbar_page import NavbarPage
-
-
-@given(u'användaren klickat på knappen "Lägg till bok"')
-def step_user_click_add_book(context):
-    context.navbar = NavbarPage(context.page)
-    context.navbar.click_add_book()
+from behave import given, when
 
 
 @when(u'användaren skriver in titeln "{title}"')
@@ -25,9 +17,3 @@ def step_user_fill_in_author(context, author):
 def step_user_click_add_new_book(context):
     submit_button = context.page.get_by_test_id("add-submit")
     submit_button.click()
-
-
-@then(u'ska boken "{title}" av "{author}" finnas med i Läslistan')
-def step_confirm_book_added(context, title, author):
-    book_row = context.page.locator(".book", has_text=title)
-    expect(book_row).to_contain_text(author)

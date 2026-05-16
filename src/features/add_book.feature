@@ -1,6 +1,6 @@
-# User story 2
+# User story 3
 # Som en användare vill jag kunna lägga till böcker i listan
-# för att andra ska kunna ta del av böcker jag läst
+# för att de ska komma med i läslistan
 
 Feature: Lägga till böcker
 

@@ -1,1 +1,0 @@
-[![Python CI/CD](https://github.com/Alidrine-X/exam_lena_widegren_testverktyg/actions/workflows/python-ci.yml/badge.svg)](https://github.com/Alidrine-X/exam_lena_widegren_testverktyg/actions/workflows/python-ci.yml)

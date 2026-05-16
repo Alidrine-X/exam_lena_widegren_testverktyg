@@ -44,3 +44,6 @@ class FavoriteBooks:
 
         if book in self.favorites:
             self.favorites.remove(book)
+
+    def get_favorite_count(self):
+        return len(self.favorites)

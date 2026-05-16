@@ -66,6 +66,9 @@ class BookStore:
                 return book
         return None
 
+    def get_total_books(self):
+        return len(self.books)
+
     # Sätter om markering från tidigare värde mellan favorit/inte favorit
     def toggle_favorite(self, book_id):
         book = self.get_book(book_id)

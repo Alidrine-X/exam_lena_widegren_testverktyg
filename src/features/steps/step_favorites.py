@@ -20,7 +20,7 @@ def step_mark_favorite_book_loop(context):
 
         # Anropa det befintliga steget via dess Gherkin-text
         step_text = (f'When användaren klickar på raden framför boken '
-                        f'"{title}" av "{author}"')
+                     f'"{title}" av "{author}"')
         context.execute_steps(step_text)
 
 
@@ -43,7 +43,8 @@ def step_user_has_no_favorites(context):
     expect(context.page.locator(".star.selected")).to_have_count(0)
 
 
-@then(u'ska texten "När du valt, kommer dina favoritböcker att visas här." visas')
+@then(u'ska texten "När du valt, kommer dina favoritböcker '
+      u'att visas här." visas')
 def step_show_explaining_text(context):
     expected_text = "När du valt, kommer dina favoritböcker att visas här."
     expect(context.page.get_by_text(expected_text)).to_be_visible()
@@ -51,4 +52,5 @@ def step_show_explaining_text(context):
 
 @then(u'favoritlistan ska vara tom')
 def step_no_books_in_favorite_list(context):
-    expect(context.page.locator('[data-testid="book-list"] li')).to_have_count(0)
+    favorite_books = context.page.locator('[data-testid="book-list"] li')
+    expect(favorite_books).to_have_count(0)

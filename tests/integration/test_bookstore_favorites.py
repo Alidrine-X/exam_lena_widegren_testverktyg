@@ -30,7 +30,8 @@ def book_list():
          "author": "Linus Torvalds"},
         {"id": 108, "title": "Learn Python in 21 Years",
          "author": "Sams Teachyourself"},
-        {"id": 109, "title": "Agile Is a Feeling", "author": "Jeff Sutherland"},
+        {"id": 109, "title": "Agile Is a Feeling",
+         "author": "Jeff Sutherland"},
         {"id": 110, "title": "Playwright: Waiting for Selectors",
          "author": "Samuel Barclay Beckett"},
         {"id": 111, "title": "Stack Overflow: A Love Story",
@@ -120,7 +121,7 @@ def test_bookstore_and_favorites(bookstore, favorite_list, book_list):
     assert favorite_list.get_favorite_count() == 1
 
 
-# Testfall 3: Statistik över totalt antal böcker och favoriter (User Story 4 & 5)
+# Testfall 3: Statistik över antal böcker och favoriter (User Story 4 & 5)
 def test_bookstore_and_favorites_statistics(bookstore, favorite_list):
     # Arrange: Vi definierar två tydliga böcker
     book1_id, author1, title1 = 201, "Författare X", "Titel X"
@@ -139,6 +140,6 @@ def test_bookstore_and_favorites_statistics(bookstore, favorite_list):
     book1 = bookstore.get_book(book1_id)
     favorite_list.add(book1)
 
-    # Assert 2: Slutgiltig kontroll av statistiken (2 böcker totalt och 1 favorit)
+    # Assert 2: Slutlig kontroll av statistik (2 böcker totalt och 1 favorit)
     assert bookstore.get_total_books() == 2
     assert favorite_list.get_favorite_count() == 1

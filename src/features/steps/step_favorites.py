@@ -27,8 +27,8 @@ def step_mark_favorite_book_loop(context):
 @then(u'ska följande böcker visas:')
 def step_show_books_in_favorite_list(context):
     for row in context.table:
-        titel = row['title']
-        bok_id = f"fav-{titel}"
+        title = row['title']
+        bok_id = f"fav-{title}"
         expect(context.page.get_by_test_id(bok_id)).to_be_visible()
 
 

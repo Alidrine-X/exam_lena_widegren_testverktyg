@@ -1,3 +1,23 @@
+# ---------------------------------------------------------------
+# User Story 4: Systemintegration - Hantera favoriter mellan listor
+# Som bokslukare vill jag att favoritmarkering i läslistan synkas
+# med favoritlistan så att mitt urval sparas korrekt.
+#
+# Acceptanskriterier:
+# AK 4.1: En bok som sätts till favorit i läslistan ska läggas
+#         till i favoritlistan.
+# AK 4.2: En bok som tas bort som favorit i läslistan ska rensas
+#         från favoritlistan.
+# ---------------------------------------------------------------
+# User Story 5: Systemintegration - Global statistik
+# Som bokslukare vill jag att systemet ger korrekt statistik för
+# hela samlingen så att jag har överblick över mina böcker.
+#
+# Acceptanskriterier:
+# AK 5.1: Systemet ska visa korrekt antal för både antal böcker
+#         och favoriter.
+# ---------------------------------------------------------------
+
 import pytest
 from src.bookstore.bookstore import BookStore
 from src.bookstore.favorite_books import FavoriteBooks
@@ -45,8 +65,9 @@ def book_list():
     ]
 
 
-# Testa att lägga till en bok som favorit
 def test_add_to_favorites(bookstore, favorite_list):
+    """Testar AK 4.1: En bok som sätts till favorit i läslistan ska läggas
+    till i favoritlistan."""
     # Arrange
     book_id = 100
     author = "Guido van Rossum"
@@ -68,8 +89,9 @@ def test_add_to_favorites(bookstore, favorite_list):
     assert len(favorite_list.favorites) == 1
 
 
-# Testa att ta bort en bok från favoriter
 def test_remove_from_favorites(bookstore, favorite_list):
+    """Testar AK 4.2: En bok som tas bort som favorit i läslistan ska rensas
+    från favoritlistan."""
     # Arrange
     book_id = 102
     author = "Dave Thomasson"
@@ -96,50 +118,31 @@ def test_remove_from_favorites(bookstore, favorite_list):
 
 # Testar att antal böcker och antal favoritböcker stämmer
 def test_bookstore_and_favorites(bookstore, favorite_list, book_list):
+    """Testar AK 5.1: Systemet ska visa korrekt antal för både antal böcker
+    och favoriter."""
     # Arrange
     # Startar med 0 böcker och 0 favoriter
     assert bookstore.get_total_books() == 0
     assert favorite_list.get_favorite_count() == 0
 
-    # Act 1 - Lägg till alla böcker till Läslistan
+    # Act 1
+    # Lägg till alla böcker till Läslistan
     for book in book_list:
         bookstore.add_book(book["id"], book["author"], book["title"])
 
-    # Assert
+    # Assert 1
     # Kontrollera att totala räknaren ökat till 13 böcker
     # Kontrollera att det är 0 favoriter
     assert bookstore.get_total_books() == 13
     assert favorite_list.get_favorite_count() == 0
 
-    # Act 2 - Markera en av böckerna som favorit och lägg till i favoritlistan
-    bookstore.toggle_favorite(100)
-    book = bookstore.get_book(100)
+    # Act 2
+    # Markera en av böckerna som favorit och lägg till i favoritlistan
+    bookstore.toggle_favorite(107)
+    book = bookstore.get_book(107)
     favorite_list.add(book)
 
-    # Assert 2 - Kontrollera att både totalt antal och favoriter stämmer nu
+    # Assert 2
+    # Kontrollera att både totalt antal och favoriter stämmer nu
     assert bookstore.get_total_books() == 13
-    assert favorite_list.get_favorite_count() == 1
-
-
-# Testfall 3: Statistik över antal böcker och favoriter (User Story 4 & 5)
-def test_bookstore_and_favorites_statistics(bookstore, favorite_list):
-    # Arrange: Vi definierar två tydliga böcker
-    book1_id, author1, title1 = 201, "Författare X", "Titel X"
-    book2_id, author2, title2 = 202, "Författare Y", "Titel Y"
-
-    # Act 1: Lägg till båda böckerna i bokhandeln
-    bookstore.add_book(book1_id, author1, title1)
-    bookstore.add_book(book2_id, author2, title2)
-
-    # Assert 1: Kontrollera att det totala antalet nu är 2, men 0 favoriter
-    assert bookstore.get_total_books() == 2
-    assert favorite_list.get_favorite_count() == 0
-
-    # Act 2: Gör Bok 1 till favorit och flytta över den till favoritlistan
-    bookstore.toggle_favorite(book1_id)
-    book1 = bookstore.get_book(book1_id)
-    favorite_list.add(book1)
-
-    # Assert 2: Slutlig kontroll av statistik (2 böcker totalt och 1 favorit)
-    assert bookstore.get_total_books() == 2
     assert favorite_list.get_favorite_count() == 1

@@ -63,7 +63,7 @@ def test_add_invalid_book(favorite_list):
     """Testar AK 3.4: Endast giltiga bokobjekt ska accepteras i listan."""
     # Act
     invalid_book = ("inte en bok", "George R.R. Martin",
-            "The Developer Who Knew Nothing")
+                    "The Developer Who Knew Nothing")
     favorite_list.add(invalid_book)
 
     # Assert
